@@ -136,5 +136,3 @@ function playAlertSound() {
      const alertSound = document.getElementById('beep');
      alertSound.play();
 }
-// git remote add origin https://github.com/Nonsookoli007/study-timer.git
-// git remote add origin https://github.com/Nonsookoli007/study-timer
