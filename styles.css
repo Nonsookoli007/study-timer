@@ -1,6 +1,7 @@
+/* Base Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-color: #585757;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,11 +15,14 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
+    margin: 10px;
 }
 
 h1 {
     margin-bottom: 20px;
+    font-size: 1.5rem;
 }
 
 .settings {
@@ -29,6 +33,7 @@ h1 {
 
 .settings label {
     display: block;
+    font-size: 1rem;
 }
 
 .settings input {
@@ -45,7 +50,7 @@ h1 {
 
 button {
     padding: 10px;
-    margin: 5px;
+    margin: 10px;
     width: 100px;
     border: none;
     background-color: #007bff;
@@ -53,16 +58,78 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-
-button:disabled {
+#startBtn{
+    background-color: green;
+}
+#startBtn:hover{
+    background-color: rgb(27, 89, 27);
+}
+#startBtn:disabled{
     background-color: #cccccc;
 }
-
-button:hover:enabled {
-    background-color: #0056b3;
+#resetBtn{
+    background-color:red;
+}
+#resetBtn:hover{
+    background-color:rgb(193, 41, 41);
+}
+#resetBtn:disabled{
+    background-color: #cccccc;
 }
 
 #sessionStatus {
     margin-top: 10px;
     font-size: 18px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .settings label {
+        font-size: 0.9rem;
+    }
+
+    .timer {
+        font-size: 36px;
+    }
+
+    button {
+        width: 90px;
+        padding: 8px;
+    }
+
+    #sessionStatus {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 468px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .timer {
+        font-size: 32px;
+    }
+
+    button {
+        width: 80px;
+        padding: 7px;
+    }
+
+    #sessionStatus {
+        font-size: 14px;
+    }
 }
