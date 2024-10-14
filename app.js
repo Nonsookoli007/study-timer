@@ -1,86 +1,26 @@
-// let workDuration = 30;  // default work duration in minutes
-// let breakDuration = 5;  // default break duration in minutes
-// let isWorking = true;
-// let timerInterval;
-// let timeRemaining;
-
-// document.getElementById('startBtn').addEventListener('click', startTimer);
-// document.getElementById('resetBtn').addEventListener('click', resetTimer);
-// document.getElementById('workDuration').addEventListener('change', updateDurations);
-// document.getElementById('breakDuration').addEventListener('change', updateDurations);
-
-// function updateDurations() {
-//     workDuration = parseInt(document.getElementById('workDuration').value) || 30;
-//     breakDuration = parseInt(document.getElementById('breakDuration').value) || 5;
-//     if (isWorking) {
-//         timeRemaining = workDuration * 60;
-//         updateTimerDisplay();
-//     }
-// }
-
-// function startTimer() {
-//     document.getElementById('startBtn').disabled = true;
-//     document.getElementById('resetBtn').disabled = false;
-//     timeRemaining = isWorking ? workDuration * 60 : breakDuration * 60;
-//     timerInterval = setInterval(countdown, 1000);
-// }
-
-// function countdown() {
-//     if (timeRemaining <= 0) {
-//         document.getElementById('beep').play();
-//         clearInterval(timerInterval);
-//         switchSession();
-//     } else {
-//         timeRemaining--;
-//         updateTimerDisplay();
-//     }
-// }
-
-// function updateTimerDisplay() {
-//     let minutes = Math.floor(timeRemaining / 60);
-//     let seconds = timeRemaining % 60;
-//     document.getElementById('timerDisplay').textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-// }
-
-// function switchSession() {
-//     isWorking = !isWorking;
-//     document.getElementById('sessionStatus').textContent = isWorking ? "Work Session" : "Break Time";
-//     timeRemaining = isWorking ? workDuration * 60 : breakDuration * 60;
-//     updateTimerDisplay();
-//     document.getElementById('startBtn').disabled = false;
-// }
-
-// function resetTimer() {
-//     clearInterval(timerInterval);
-//     document.getElementById('startBtn').disabled = false;
-//     document.getElementById('resetBtn').disabled = true;
-//     isWorking = true;
-//     document.getElementById('sessionStatus').textContent = "Work Session";
-//     timeRemaining = workDuration * 60;
-//     updateTimerDisplay();
-// }
-
-// function playAlertSound() {
-//     const alertSound = document.getElementById('beep');
-//     alertSound.play();
-// }
-
-let workDuration = 30;  // default work duration in minutes
-let breakDuration = 5;  // default break duration in minutes
-let isWorking = true;   // flag to check if it's work or break session
+let workMinutes = 25;  // default work minutes
+let workSeconds = 0;   // default work seconds
+let breakMinutes = 5;  // default break minutes
+let breakSeconds = 0;  // default break seconds
+let isWorking = true;  // flag to check if it's work or break session
 let timerInterval;
 let timeRemaining;
 
 document.getElementById('startBtn').addEventListener('click', startTimer);
 document.getElementById('resetBtn').addEventListener('click', resetTimer);
-document.getElementById('workDuration').addEventListener('change', updateDurations);
-document.getElementById('breakDuration').addEventListener('change', updateDurations);
+document.getElementById('workMinutes').addEventListener('change', updateDurations);
+document.getElementById('workSeconds').addEventListener('change', updateDurations);
+document.getElementById('breakMinutes').addEventListener('change', updateDurations);
+document.getElementById('breakSeconds').addEventListener('change', updateDurations);
 
 function updateDurations() {
-    workDuration = parseInt(document.getElementById('workDuration').value) || 30;
-    breakDuration = parseInt(document.getElementById('breakDuration').value) || 5;
+    workMinutes = parseInt(document.getElementById('workMinutes').value) || 0;
+    workSeconds = parseInt(document.getElementById('workSeconds').value) || 0;
+    breakMinutes = parseInt(document.getElementById('breakMinutes').value) || 0;
+    breakSeconds = parseInt(document.getElementById('breakSeconds').value) || 0;
+    
     if (isWorking) {
-        timeRemaining = workDuration * 60;
+        timeRemaining = workMinutes * 60 + workSeconds;
         updateTimerDisplay();
     }
 }
@@ -88,15 +28,13 @@ function updateDurations() {
 function startTimer() {
     document.getElementById('startBtn').disabled = true;
     document.getElementById('resetBtn').disabled = false;
-    timeRemaining = isWorking ? workDuration * 60 : breakDuration * 60;
+    timeRemaining = isWorking ? (workMinutes * 60 + workSeconds) : (breakMinutes * 60 + breakSeconds);
     timerInterval = setInterval(countdown, 1000);
 }
 
 function countdown() {
     if (timeRemaining <= 0) {
-        // Play beep sound when the timer ends
         document.getElementById('beep').play();
-        
         clearInterval(timerInterval);
         switchSession();  // Switch between work and break sessions
     } else {
@@ -112,12 +50,9 @@ function updateTimerDisplay() {
 }
 
 function switchSession() {
-    // Toggle between work and break sessions
     isWorking = !isWorking;
     document.getElementById('sessionStatus').textContent = isWorking ? "Work Session" : "Break Time";
-    timeRemaining = isWorking ? workDuration * 60 : breakDuration * 60;
-    
-    // Automatically start the next session after switching
+    timeRemaining = isWorking ? (workMinutes * 60 + workSeconds) : (breakMinutes * 60 + breakSeconds);
     updateTimerDisplay();
     startTimer();
 }
@@ -128,7 +63,7 @@ function resetTimer() {
     document.getElementById('resetBtn').disabled = true;
     isWorking = true;
     document.getElementById('sessionStatus').textContent = "Work Session";
-    timeRemaining = workDuration * 60;
+    timeRemaining = workMinutes * 60 + workSeconds;
     updateTimerDisplay();
 }
 
@@ -136,3 +71,4 @@ function playAlertSound() {
      const alertSound = document.getElementById('beep');
      alertSound.play();
 }
+
