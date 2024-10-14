@@ -11,15 +11,15 @@
         <h1>Pomodoro Study Timer</h1>
 
         <div class="settings">
-            <label for="workDuration">Work Duration (minutes):</label>
-            <input type="number" id="workDuration" value="30" min="1">
+            <label for="workDuration">Work Duration (mins:secs)</label>
+            <input type="number" id="workMinutes" value="25" min="0" class="mins"><input type="number" id="workSeconds" value="00" min="0" max="59" class="secs">
 
-            <label for="breakDuration">Break Duration (minutes):</label>
-            <input type="number" id="breakDuration" value="5" min="1">
+            <label for="breakDuration">Break Duration (mins:secs)</label>
+            <input type="number" id="breakMinutes" value="5" min="0" class="mins"><input type="number" id="breakSeconds" value="00" min="0" max="59" class="secs">
         </div>
 
         <div class="timer">
-            <p id="timerDisplay">30:00</p>
+            <p id="timerDisplay">25:00</p>
         </div>
 
         <button id="startBtn">Start</button>
@@ -28,7 +28,6 @@
 
         <audio id="beep" src="./audio/beep-warning-6387.mp3" preload="auto"></audio>
 
-        <audio id="beep" src="beep.mp3" preload="auto"></audio>
     </div>
 
     <script src="app.js"></script>
